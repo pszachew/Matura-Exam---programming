@@ -37,7 +37,11 @@ f.write("\n 4_2: \noperacja:{} dlugosc:{}".format(op_max, z_max))
 aggr = data[data['operation'] == 'DOPISZ'].groupby('obj').count()
 aggr.columns = ['cnt']
 aggr.sort_values(by='cnt', inplace=True, ascending=False)
-f.write("\n4_3\nletter: {} count: {}".format(aggr.index.values[0],aggr['cnt'][0]))
+f.write("\n4_3\nletter: {} count: {}".format(aggr.index.values[0], aggr['cnt'][0]))
+
+# We can also do the same in one line
+aggr2 = data[data['operation'] == 'DOPISZ'].value_counts(['obj']).head(1)
+aggr3 = data[data['operation'] == 'DOPISZ']['obj'].value_counts().idxmax()
 
 # 4_4
 ans = ""
